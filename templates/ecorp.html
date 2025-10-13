@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edin Tahiri - Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80 },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5 },
+                size: { value: 3 },
+                line_linked: { enable: true, color: "#ffffff" },
+                move: { enable: true, speed: 2 }
+            }
+        });
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="particles-js"></div>
+    <header>
+        <div class="container">
+            <h1>Edin Tahiri</h1>
+            <p>Web Developer | Programmer | Designer | Full Stack | Modeler</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>Hello! I'm <strong>Edin</strong>, a passionate full stack developer with experience in building modern, responsive websites and applications. I love solving problems and creating user-friendly applications.</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Skills</h2>
+            <ul class="skills-list">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>Python</li>
+                <li>React</li>
+                <li>C++</li>
+                <li>C</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>TerminalOS</h3>
+                <p>A user-friendly tool for hacking, programming, and daily use. <a href="https://github.com/Zypher0903/TerminalOS" target="_blank">View Project</a></p>
+            </div>
+            <div class="project">
+                <h3>Disto</h3>
+                <p>A safe and user-friendly messaging app. Host private servers and connect securely. <a href="https://github.com/JohanLiebert363/Disto" target="_blank">View Project</a></p>
+            </div>
+            <div class="project">
+                <h3>Portfolio Website</h3>
+                <p>A personal portfolio website to showcase my projects and skills. <a href="https://github.com/JohanLiebert363/Disto" target="_blank">View Project</a></p>
+            </div>
+            <div class="project">
+                <h3>Fishing Equipment Website</h3>
+                <p>Buy fishing tools. <a href="https://johanliebert363.github.io/Duoo/" target="_blank">View Project</a></p>
+            </div>
+            <div class="project">
+                <h3>Professional Paint Website</h3>
+                <p>Paint recommendations for wood, kitchens, and more. <a href="https://johanliebert363.github.io/ProFarb/" target="_blank">View Project</a></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <p>Feel free to reach out to me via email or connect with me on social media!</p>
+            <ul class="contact-info">
+                <li>GitHub: <a href="https://github.com/JohanLiebert363" target="_blank">github.com/JohanLiebert363</a></li>
+                <li>TikTok: <a href="https://tiktok.com/in/rand0m0381" target="_blank">tiktok.com/in/rand0m0381</a></li>
+            </ul>
+        </div>
+        <div class="contact-form">
+            <h3>Send me a message</h3>
+            <form id="contactForm">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required placeholder="example@email.com">
+                
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" rows="5" required placeholder="Write your message..."></textarea>
+                
+                <button type="submit">Send</button>
+            </form>
+            <p id="responseMsg"></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Edin Tahiri. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const ngrokUrl = "https://arjun-weest-nonindulgently.ngrok-free.dev"; // Replace with your ngrok URL
+
+        document.getElementById("contactForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            try {
+                const res = await fetch(`${ngrokUrl}/api/contact`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, message })
+                });
+
+                const data = await res.json();
+                document.getElementById("responseMsg").textContent = data.message;
+                document.getElementById("contactForm").reset();
+            } catch (err) {
+                console.error(err);
+                document.getElementById("responseMsg").textContent = "Error sending message. Try again!";
+            }
+        });
+    </script>
+</body>
+</html>
