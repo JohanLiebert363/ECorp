@@ -9,7 +9,7 @@ CORS(app)  # allow frontend to access backend
 DATA_FILE = "messages.json"
 @app.route("/")
 def home():
-    return render_template("ecorp.html")
+    return render_template("index.html")
 from flask import render_template
 
 @app.route("/")
